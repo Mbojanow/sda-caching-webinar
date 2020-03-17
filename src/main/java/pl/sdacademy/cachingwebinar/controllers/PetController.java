@@ -1,0 +1,36 @@
+package pl.sdacademy.cachingwebinar.controllers;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import pl.sdacademy.cachingwebinar.domain.Pet;
+import pl.sdacademy.cachingwebinar.services.PetService;
+
+@RestController
+@RequestMapping("/api/pets")
+public class PetController {
+
+  private final PetService petService;
+
+  public PetController(final PetService petService) {
+    this.petService = petService;
+  }
+
+  @GetMapping("/{name}")
+  public Pet get(@PathVariable final String name) {
+    return petService.getByName(name);
+  }
+
+  @PutMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public Pet createOrUpdate(@RequestBody final Pet pet) {
+    return petService.createOrUpdate(pet);
+  }
+}

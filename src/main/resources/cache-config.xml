@@ -1,0 +1,36 @@
+<config xmlns="http://www.ehcache.org/v3">
+  <cache alias="products" uses-template="products"/>
+  <cache alias="default" uses-template="default"/>
+  <cache alias="pets" uses-template="pets"/>
+
+  <cache-template name="products">
+    <expiry>
+      <ttl unit="seconds">60</ttl>
+    </expiry>
+
+    <resources>
+      <heap unit="entries">2000</heap>
+    </resources>
+  </cache-template>
+
+  <cache-template name="default">
+    <expiry>
+      <ttl unit="seconds">60</ttl>
+    </expiry>
+
+    <resources>
+      <heap unit="entries">2000</heap>
+    </resources>
+  </cache-template>
+
+  <cache-template name="pets">
+    <expiry>
+      <ttl unit="seconds">60</ttl>
+    </expiry>
+
+    <resources>
+      <heap unit="entries">2000</heap>
+    </resources>
+  </cache-template>
+
+</config>
